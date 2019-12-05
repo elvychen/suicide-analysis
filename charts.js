@@ -24,6 +24,7 @@ mouse/touch event handler to bind the charts together.
                 if (chart==null || chart.renderTo==null){
                     continue;
                 }
+                currentID = chart.renderTo.id;
                 // Find coordinates within the chart
                 if (chart.renderTo!==wordCloud){
                   event = chart.pointer.normalize(e);
@@ -31,6 +32,10 @@ mouse/touch event handler to bind the charts together.
                 }
                 // Get the hovered point
                 if (point) {
+                    if (scatter.xAxis[0].visible == false){
+                      scatter.xAxis[0].update({visible:true});
+                      scatter.yAxis[0].update({visible:true});
+                    }
                     if (chart.renderTo.id == "timeline"){
                       var data = worldmap[point.id];
                       geomap.setTitle({'text':point.id+' Worldwide Suicide Rate Distribution'});
@@ -41,13 +46,11 @@ mouse/touch event handler to bind the charts together.
                       scatter.setTitle({'text':'GDP Per Capita in Each Country <br> VS.<br> Suicide Rate ( ' +point.id + ' )',
                       'verticalAlign': 'top'
                     })
-
-
+                  
                       lineChart.series[0].setData(getRateLine(point.id));
 
                       wordCloud.setTitle({'text':'Suicide Rate For Each Age Group ( ' + point.id +' )',
-                    'verticalAlign': 'top'
-                    })
+                    'verticalAlign': 'top'})
                       wordCloud.series[0].update({'data':wordCloudData[point.id]});
                       point.highlight(e);
                     }
@@ -59,6 +62,7 @@ mouse/touch event handler to bind the charts together.
     );
 });
 
+var currentID; 
 
 /**
  * Override the reset function, we don't need to hide the tooltips and
@@ -331,8 +335,7 @@ lineChart = Highcharts.chart('lineChart', {
   tooltip: {
     headerFormat: '<b>Year:</b> <span style= "color: #ff0000"> {point.x} </span><br>',
     pointFormatter: function(){
-      return '<span style="font-weight: normal; font-size: 6pt;" > '+'Suicide Rate: <b>'+(this.y*100).toFixed(3)+"‱" + "</b></span>"
-
+        return '<span style="font-weight: normal; font-size: 6pt;" > '+'Suicide Rate: <b>'+(this.y*100).toFixed(3)+"‱" + "</b></span>";
     }
 },
 
@@ -364,13 +367,12 @@ scatter = Highcharts.chart('scatter', {
       description: 'A scatter plot compares the height and weight of 507 individuals by gender. Height in centimeters is plotted on the X-axis and weight in kilograms is plotted on the Y-axis. The chart is interactive, and each data point can be hovered over to expose the height and weight data for each individual. The scatter plot is fairly evenly divided by gender with females dominating the left-hand side of the chart and males dominating the right-hand side. The height data for females ranges from 147.2 to 182.9 centimeters with the greatest concentration between 160 and 165 centimeters. The weight data for females ranges from 42 to 105.2 kilograms with the greatest concentration at around 60 kilograms. The height data for males ranges from 157.2 to 198.1 centimeters with the greatest concentration between 175 and 180 centimeters. The weight data for males ranges from 53.9 to 116.4 kilograms with the greatest concentration at around 80 kilograms.'
   },
   title: {
-      text: 'Is There a Relationship Between<br><b>GDP per Capita in Each Country</b> and <b>Suicide Rate</b>?',
-      align:'center',
-      verticalAlign:'center'
-      
+    text: 'Is There a Relationship Between<br><b>GDP per Capita in Each Country</b> and <b>Suicide Rate</b>?',
+    align:'center',
+    verticalAlign:'middle'
   },
   subtitle: {
-      text: 'Source: Heinz  2003'
+      enabled: false,
   },
   xAxis: {
       title: {
@@ -381,12 +383,14 @@ scatter = Highcharts.chart('scatter', {
       endOnTick: true,
       showLastLabel: true,
       min:0,
+      visible: false,
 
   },
   yAxis: {
       title: {
           text: 'suicide rate'
       },
+      visible: false,
   },
   credits:{
     enabled: false,
