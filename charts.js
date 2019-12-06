@@ -284,11 +284,30 @@ geomap = new Highcharts.mapChart('geomap', {
         enabled: false,
     },
     colorAxis:{
-        minColor: '#ffb3b3',
-        maxColor: '#900000',
-        labels:{
-          step: 10,
-        }
+        dataClasses: [{
+          color: '#EEE89D',
+          to: 0.005,
+          name: '< 0.5‱'
+      }, {
+          color: '#EDCE8D',
+          from: 0.005,
+          to: 0.01,
+          name: '0.5‱ - 0.1‱'
+      }, {
+        color: '#FC7750',
+          from: 0.01,
+          to: 0.015,
+          name: '0.01‱ - 0.15‱'
+      },{
+        color: '#EC4542',
+        from: 0.015,
+        to: 0.02,
+        name: '0.015‱ - 0.2‱'
+    },{
+      color: '#B4323C',
+      from: 0.02,
+      name: '> 0.02‱'
+  }]
     },
     series: [{
       data: [],
