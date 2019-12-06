@@ -46,7 +46,7 @@ mouse/touch event handler to bind the charts together.
                       scatter.setTitle({'text':'GDP Per Capita in Each Country <br> VS.<br> Suicide Rate ( ' +point.id + ' )',
                       'verticalAlign': 'top'
                     })
-                  
+                      lineChart.tooltip.update({enabled:true})
                       lineChart.series[0].setData(getRateLine(point.id));
 
                       wordCloud.setTitle({'text':'Suicide Rate For Each Age Group ( ' + point.id +' )',
@@ -122,7 +122,8 @@ function getRateLine(year){
 var timeline = {
     chart: {
       zoomType: 'x',
-      type: 'timeline'
+      type: 'timeline',
+      backgroundColor:'transparent'
     },
     xAxis: {
       type: 'datetime',
@@ -262,6 +263,7 @@ Highcharts.ajax({
 geomap = new Highcharts.mapChart('geomap', {
     chart: {
       map: 'custom/world',
+      backgroundColor:'transparent'
     },
     title: {
         text: 'How Suicide Rate Differs Worldwide<br> From 2005 To 2015?',
@@ -301,6 +303,9 @@ geomap = new Highcharts.mapChart('geomap', {
 
 
 lineChart = Highcharts.chart('lineChart', {
+  chart:{
+    backgroundColor:'transparent'
+  },
 
   title: {
       text: 'Suicide Rate\'s Trends From 2005 To 2015 '
@@ -336,7 +341,8 @@ lineChart = Highcharts.chart('lineChart', {
     headerFormat: '<b>Year:</b> <span style= "color: #ff0000"> {point.x} </span><br>',
     pointFormatter: function(){
         return '<span style="font-weight: normal; font-size: 6pt;" > '+'Suicide Rate: <b>'+(this.y*100).toFixed(3)+"‱" + "</b></span>";
-    }
+    },
+    enabled: false
 },
 
   series: [{name:'suicide_rate',data:[0,0,0,0,0,0,0,0,0,0,0]}],
@@ -361,7 +367,8 @@ lineChart = Highcharts.chart('lineChart', {
 scatter = Highcharts.chart('scatter', {
   chart: {
       type: 'scatter',
-      zoomType: 'xy'
+      zoomType: 'xy',
+      backgroundColor:'transparent'
   },
   accessibility: {
       description: 'A scatter plot compares the height and weight of 507 individuals by gender. Height in centimeters is plotted on the X-axis and weight in kilograms is plotted on the Y-axis. The chart is interactive, and each data point can be hovered over to expose the height and weight data for each individual. The scatter plot is fairly evenly divided by gender with females dominating the left-hand side of the chart and males dominating the right-hand side. The height data for females ranges from 147.2 to 182.9 centimeters with the greatest concentration between 160 and 165 centimeters. The weight data for females ranges from 42 to 105.2 kilograms with the greatest concentration at around 60 kilograms. The height data for males ranges from 157.2 to 198.1 centimeters with the greatest concentration between 175 and 180 centimeters. The weight data for males ranges from 53.9 to 116.4 kilograms with the greatest concentration at around 80 kilograms.'
@@ -432,10 +439,14 @@ scatter = Highcharts.chart('scatter', {
 
 
 wordCloud = Highcharts.chart('wordCloud', {
+    chart:{
+      backgroundColor: 'transparent'
+    },
     series: [{
       type: 'wordcloud',
       data: [],
-      name: 'Occurrences'
+      name: 'Occurrences',
+      
   }],
   credits:{
     enabled: false,
