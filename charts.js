@@ -170,6 +170,25 @@ var timeline = {
     }]
   }
 
+function changeConclusion(){
+    var x = document.getElementById('currentTable');
+    var y = document.getElementById('conclusion_text');
+    console.log(y.style)
+
+    if (x.style.visibility == 'hidden'){
+      x.style.visibility = 'visible';
+      y.style.visibility = 'hidden';
+      x.style.display = "block";
+      y.style.display = "none";
+    }
+    else{
+      y.style.visibility = 'visible';
+      y.style.display = "block";
+      x.style.visibility = 'hidden';
+      x.style.display = "none";
+    }
+    
+}
 var dataset = {};
 var timeline_dict = {};
 var worldmap = {};
@@ -216,7 +235,7 @@ Highcharts.ajax({
             max_d = 0;
             for (j = 0;j<89;j++){
                 if (j<n){
-                  first_val = parseFloat(info[currCountries[j]][0]);
+                  first_val = parseFloat((parseFloat(info[currCountries[j]][0])*100).toFixed(3));
                   second_val = parseFloat(info[currCountries[j]][1]);
                   sum += first_val;
                   country_s = {};
@@ -286,33 +305,33 @@ geomap = new Highcharts.mapChart('geomap', {
     colorAxis:{
         dataClasses: [{
           color: '#EEE89D',
-          to: 0.005,
+          to: 0.5,
           name: '< 0.5‱'
       }, {
           color: '#EDCE8D',
-          from: 0.005,
-          to: 0.01,
-          name: '0.5‱ - 0.1‱'
+          from: 0.5,
+          to: 1,
+          name: '0.5‱ - 1‱'
       }, {
         color: '#FC7750',
-          from: 0.01,
-          to: 0.015,
-          name: '0.01‱ - 0.15‱'
+          from: 1,
+          to: 1.5,
+          name: '1‱ - 1.5‱'
       },{
         color: '#EC4542',
-        from: 0.015,
-        to: 0.02,
-        name: '0.015‱ - 0.2‱'
+        from: 1.5,
+        to: 2,
+        name: '1.5‱ - 2‱'
     },{
       color: '#B4323C',
-      from: 0.02,
-      name: '> 0.02‱'
+      from: 2,
+      name: '> 2‱'
   }]
     },
     series: [{
       data: [],
       joinBy: ['name', 'name'],
-      name: 'Box Office',
+      name: 'Suicide Rate (‱)',
       states: {
         hover: {
           color: '#a4edba'
@@ -404,7 +423,7 @@ scatter = Highcharts.chart('scatter', {
   xAxis: {
       title: {
           enabled: true,
-          text: 'GDP per capita'
+          text: 'GDP per capita ($)'
       },
       startOnTick: true,
       endOnTick: true,
@@ -415,7 +434,7 @@ scatter = Highcharts.chart('scatter', {
   },
   yAxis: {
       title: {
-          text: 'suicide rate'
+          text: 'suicide rate (‱)'
       },
       visible: false,
   },
@@ -445,7 +464,7 @@ scatter = Highcharts.chart('scatter', {
           },
           tooltip: {
               headerFormat: '<b>{series.name}</b><br>',
-              pointFormat: '{point.x} cm, {point.y} kg'
+              pointFormat: ' $ {point.x}, {point.y} ‱'
           }
       }
   },

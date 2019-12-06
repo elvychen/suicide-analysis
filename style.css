@@ -14,3 +14,11 @@ p{
     font-family: 'Times New Roman';
     padding: 10px;
 }
+#conclusion_text{
+    visibility: hidden;
+    display: none;
+}
+#currentTable{
+    visibility: visible;
+    display: block;
+}

@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>
-            Actor's report
+            DSC106 Final Project
         </title>
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>   
@@ -11,7 +11,7 @@
             <div class="header">
                 
                 <h1><i>We need better title for this project!!!</i> </h1>
-                <h2 align= 'left' style = 'font-size: 14'> Suicide rate analysis (2005 - 2015) by Yu-Chieh, Yijun PICTUREEEEEEEEEEEEEEEE</h2>
+                <h2 align= 'left' style = 'font-size: 14'> Suicide rate analysis (2005 - 2015) by Yu-Chieh Chen, Yijun Liu PICTUREEEEEEEEEEEEEEEE</h2>
             </div>
             <!-- External Import begins-->
             <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>                    
@@ -31,39 +31,41 @@
 
 
             <!-- Timeline-->
-            <div id = 'timeline' style = 'width:100%; height:30%;'>
+            <div id = 'timeline' style = 'width:100%; height:25%;'>
             </div>
 
-            <div id = 'lineChart' style = 'width:100%; height:30%'>  
-            </div>
+            <div id = 'lineChart' style = 'width:100%; height:25%'></div>
+            <div style='width: 100%; height: 25%;' >
+                <table border="1" style = 'width:100%; padding:0; margin:0; border-collapse: separate' id = "currentTable">
+                    <col span="1" style="width: 33%;">
+                    <col span="1" style="width: 33%;">
+                    <col span="1" style="width: 33%;">
+                    <tr>
+                        <td>
+                            <div id = 'geomap' style ='position: relative;width:100%; height:80%;'> 
+                            </div>
+                        </td>
 
-            <table border="1" style = 'width:100%; padding:0; margin:0; border-collapse: separate'>
-                <col span="1" style="width: 33%;">
-                 <col span="1" style="width: 33%;">
-                 <col span="1" style="width: 33%;">
-                <tr>
-                    <td>
-                        <div id = 'geomap' style ='position: relative;width:100%; height:80%;'> 
-                        </div>
-                    </td>
+                        <td> 
+                            <div id = 'wordCloud' style = 'position: relative;width:100%;height:80%;'>   
+                            </div>
+                        </td>
 
-                    <td> 
-                        <div id = 'wordCloud' style = 'position: relative;width:100%;height:80%;'>   
-                        </div>
-                    </td>
+                        <td>
+                            <div id = 'scatter' style = 'position: relative;width:100%;height:80%;'>   
+                            </div>
+                        </td>
 
-                    <td>
-                        <div id = 'scatter' style = 'position: relative;width:100%;height:80%;'>   
-                        </div>
-                    </td>
+                    </tr>
 
-                </tr>
+                </table>  
 
-            </table>
+                <div id = "conclusion_text" style = "background-color: #f2f2f2;">
+                    <p style = "color: black">asdfhash ptasifasdfasdhf adsf dp</p>
+                </div>
+            <button onclick="changeConclusion()">Conclusion</button>
+        </div>
+            
 
             <script src ='charts.js'></script>
-
-            <p class="contact">
-                    Yu-Chieh Chen, Yijun &copy;              
-            </p>
 </html>
