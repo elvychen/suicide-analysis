@@ -44,14 +44,12 @@ mouse/touch event handler to bind the charts together.
                       var data_scatter = scatterGDP[point.id];
                       scatter.update({series: data_scatter});
                       scatter.setTitle({'text':'GDP Per Capita in Each Country <br> VS.<br> Suicide Rate ( ' +point.id + ' )',
-                      'verticalAlign': 'top'
-                    })
+                      'verticalAlign': 'top'})
                       lineChart.tooltip.update({enabled:true})
                       lineChart.series[0].setData(getRateLine(point.id));
-
                       wordCloud.setTitle({'text':'Suicide Rate For Each Age Group ( ' + point.id +' )',
                     'verticalAlign': 'top'})
-                      wordCloud.series[0].update({'data':wordCloudData[point.id]});
+                      wordCloud.series[0].update({'data': wordCloudData[point.id.toString()]});
                       point.highlight(e);
                     }
                     
@@ -213,22 +211,14 @@ Highcharts.ajax({
             currCountries = Object.keys(info);
             countries = [];
             countries_g = [];
-            sum_x = 0;
-            sum_y = 0;
-            sum_xy = 0;
-            sum_xx = 0;
-            sum_yy = 0;
+            sum = 0;
             n = currCountries.length;
             max_d = 0;
             for (j = 0;j<89;j++){
                 if (j<n){
                   first_val = parseFloat(info[currCountries[j]][0]);
                   second_val = parseFloat(info[currCountries[j]][1]);
-                  sum_x += second_val;
-                  sum_y += first_val;
-                  sum_xy += first_val*second_val;
-                  sum_xx += second_val*second_val;
-                  sum_yy += first_val*first_val;
+                  sum += first_val;
                   country_s = {};
                   country_s['name'] = currCountries[j];
                   country_s['value'] = first_val;
@@ -245,15 +235,26 @@ Highcharts.ajax({
                   countries_g.push({});
                 }
             }
-            slope = (n * sum_xy - sum_x * sum_y) / (n *sum_xx - sum_x * sum_x);
-            intercept = (sum_y - slope * sum_x)/n;
-            var last = {'type': 'line', 'color':'#000000','name': 'Regression Line',data:[[0,intercept],[max_d,max_d*slope+intercept]],'enableMouseTracking': false,'marker': {
+            mean = sum/n ;
+            var last = {'type': 'line', 'color':'#000000','name': 'Regression Line',data:[[0,mean],[max_d,mean]],'enableMouseTracking': false,'marker': {
               'enabled': false},'states': {'hover': {'lineWidth':2}}};
             countries_g.push(last);
             worldmap[country_year[i]] = countries;
             scatterGDP[country_year[i]] = countries_g;
         }
-        wordCloudData = activity[2];
+        tempWord = activity[2];
+        wordCloudData = {};
+        for(var i = 2005;i<=2015;i++){
+          currentYear = tempWord[i.toString()];
+          yearData = []
+          for(var j =0;j<currentYear.length;j++){
+            innerDict = {};
+            innerDict['name'] = currentYear[j]['name'];
+            innerDict['weight'] = currentYear[j]['weight'];
+            yearData.push(innerDict)
+          }
+          wordCloudData[i.toString()] = yearData;
+        }
       }
     
 });
