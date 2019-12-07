@@ -273,7 +273,7 @@ Highcharts.ajax({
         }
         const index = [3,0,1,2,4,5];
         const output = index.map(i => histData_inner[i])
-        output[3] = {y:output[3],color: '#FF0000'}
+        output[3] = {y:output[3],color: 'rgb(165,42,42,0.8)'}
         histData[i.toString()] = output;
       }
       pieData = activity[3];
@@ -424,7 +424,7 @@ tooltip: {
 
 series: [{name:'suicide rate (‱)',
 data:[0,0,0,0,0,0,0,0,0,0,0],
-color:'red',
+color:'rgb(165,42,42,0.8)',
 opacity:0.9}],
 
 responsive: {
