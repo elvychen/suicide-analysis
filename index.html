@@ -8,13 +8,26 @@
     <body>
         <div class="container">
             <!-------------------------------Header------------------------>
-            <div class="header">
-                
-                <h1 style="color:white;"><i>We need better title for this project!!!</i> </h1>
-                <h2 align= 'left' style = 'font-size: 14; color: white'> Suicide rate analysis (2005 - 2015) by Yu-Chieh Chen, Yijun Liu PICTUREEEEEEEEEEEEEEEE</h2>
+            <div class="header" >
+                <table style = "height:5%;">
+                    <col span = '1' style = "width:8%;">
+                    <col span = "1" style = "width:92%;">
+                    <tr>
+                        <td rowspan = '2'>
+                            <img src = '2.jpg' style = "display:inline; width: 100%; height:50%" align = 'left'>
+                        </td>
+                        <td style="background-color: rgb(165,42,42,0.8); font-family:de-walpergens-pica, serif">
+                            <h1 style="font-size:30px; color: black">&nbsp Which Group Has the Highest Suicide Rate among Different Factors? </h1>
+                            <h2 style = 'font-size: 14;color: black'>
+                                    &nbsp &nbsp&nbsp Suicide rate analysis (2005 - 2015) 
+                                    <a href = "https://www.kaggle.com/russellyates88/suicide-rates-overview-1985-to-2016">(kaggle dataset)</a>
+                                    by Yu-Chieh Chen, Yijun Liu</h2>
+                        </td>
+                    </tr>
+                </table>
             </div>
             <!-- External Import begins-->
-            <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>                    
+            <script src='http://use.edgefonts.net/de-walpergens-pica.js'></script>
             <script src="https://code.highcharts.com/maps/highmaps.js"></script>
             <script src="https://code.highcharts.com/maps/modules/data.js"></script>
             <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
@@ -30,15 +43,14 @@
             <!-- External Import ends-->
 
 
+            
             <!-- Timeline-->
-            <div id = 'timeline' style = 'width:100%; height:25%;'>
-            </div>
-
-            <div id = 'lineChart' style = 'width:100%; height:25%'></div>
-            <div style='width: 100%; height: 25%;' >
+            <div id = 'timeline' style = 'width:100%; height:23%;'></div>
+            <div id = 'lineChart' style = 'width:100%; height:23%'></div>
+            <div style='width: 100%; height: 27%;' >
                 <table border="1" style = 'width:100%; padding:0; margin:0; border-collapse: separate' id = "currentTable">
-                    <col span="1" style="width: 70%;">
-                    <col span="1" style="width: 30%;">
+                    <col span="1" style="width: 60%;">
+                    <col span="1" style="width: 40%;">
                     <tr>
                         <td>
                             <div id = 'geomap' style ='position: relative;width:100%; height:80%;'> 
@@ -46,7 +58,7 @@
                         </td>
 
                         <td> 
-                            <div id = 'wordCloud' style = 'position: relative;width:100%;height:80%;'>   
+                            <div id = 'histogram' style = 'position: relative;width:100%;height:80%;'>   
                             </div>
                         </td>
 
@@ -59,10 +71,24 @@
 
                 </table>  
 
-                <div id = "conclusion_text" style = "background-color: #f2f2f2;">
-                    <p style = "color: black">asdfhash ptasifasdfasdhf adsf dp</p>
+                <div id = "conclusion_text" style = "background-color: rgb(165,42,42,0.8);">
+                        
+                        <ul style="font-size:24px;font-family:de-walpergens-pica, serif">
+                        <br>
+                        The graphs show that 
+                        <li>Among countries, East Europe, Central Asia, Japan and South Korea have highest suicide rates. </li>
+                           
+                        <li>Among ages, 35-54 year-old people tend to have highest suicide rates comparing to other ages. </li>
+                        
+                        However, uncertainty still remains. For example, the data does not contain all the countries. 
+                        Therefore, there might be some countries having higher suicide rates. 
+                        <br><br>
+                        <img src = 'author.jpg' style="width:10%; border-radius: 20%;"> Yu-Chieh Chen, Yijun Liu &copy
+                        </ul>
+                         
+                        
                 </div>
-            <button onclick="changeConclusion()">Conclusion</button>
+            <button onclick="changeConclusion()" style ="background-color: rgb(165,42,42,0.8); color: white;font-family:de-walpergens-pica, serif; font-size: 16px;">Conclusion</button>
         </div>
             
 
