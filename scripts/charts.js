@@ -99,16 +99,16 @@ function syncExtremes(e) {
 }
 
 function getRateLine(year){
-var currentData = []
-for(var i=2005;i<=2015;i++){
-  if (i <=parseInt(year)){
-    currentData.push(parseFloat(dataset[i]['suicide_rate']));
+  var currentData = []
+  for(var i=2005;i<=2015;i++){
+    if (i <=parseInt(year)){
+      currentData.push(parseFloat(dataset[i]['suicide_rate']));
+    }
+    else{
+      currentData.push(null);
+    }
   }
-  else{
-    currentData.push(null);
-  }
-}
-return currentData;
+  return currentData;
 }
 
 
@@ -209,7 +209,6 @@ function changeConclusion(){
     x.style.visibility = 'hidden';
     x.style.display = "none";
   }
-  
 }
 var dataset = {};
 var timeline_dict = {};
@@ -217,7 +216,7 @@ var worldmap = {};
 var pieData = {};
 
 Highcharts.ajax({
-  url:'./dataset1.json',
+  url:'./assets/dataset1.json',
   dataType:'text',
   success: function(activity){
       activity = JSON.parse(activity);
